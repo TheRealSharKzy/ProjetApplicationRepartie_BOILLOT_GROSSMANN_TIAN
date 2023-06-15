@@ -36,7 +36,12 @@ window.addEventListener('load', async function () {
         else
             return Promise.reject(new Error(response.statusText))
     }).catch(error => console.log('fetch: net error :' + error.message));
-    const stationStatus=await fetch(urlStationStatus).then(response=>response.json());
+    const stationStatus=await fetch(urlStationStatus).then(response=>{
+        if(response.ok)
+            return response.json();
+        else
+            return Promise.reject(new Error(response.statusText))
+    }).catch(error => console.log('fetch: net error :' + error.message));
     const tableStationInformation=stationInformation['data']['stations'];
     const tableStationStatus=stationStatus['data']['stations'];
     for (i=0;i<tableStationInformation.length;i++){
