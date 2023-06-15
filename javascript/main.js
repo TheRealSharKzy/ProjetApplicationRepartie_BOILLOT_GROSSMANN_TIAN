@@ -48,4 +48,15 @@ window.addEventListener('load', async function () {
         marker.bindPopup(markerPopup);
     }
 
+    const urlConstruction='https://carto.g-ny.org/data/cifs/cifs_waze_v2.json';
+    fetch(urlConstruction).then((response)=>response.json()).then((data)=>{
+        const incidents=data["incidents"];
+        incidents.forEach(incident=>{
+            const marker=L.marker(incident['location']['polyline'].split(' ')).addTo(map);
+            let markerPopup="date: "+incident['starttime']+" - "+incident['endtime'];
+            markerPopup+="<br>cause: "+incident['type'];
+            marker.bindPopup(markerPopup);
+        });
+    });
+
 });
