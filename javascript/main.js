@@ -36,7 +36,14 @@ window.addEventListener('load', async function () {
     const tableStationStatus=stationStatus['data']['stations'];
     for (i=0;i<tableStationImformation.length;i++){
         //console.log(tableStationImformation[i]['lon']);
-        const marker=L.marker([tableStationImformation[i]['lat'],tableStationImformation[i]['lon']]).addTo(map);
+        const marker=L.marker([tableStationImformation[i]['lat'],tableStationImformation[i]['lon']],{
+            icon: L.icon({
+                iconUrl: 'https://www.android-logiciels.fr/wp-content/uploads/2014/07/Paris-Velib-icone-1.png',
+                iconSize: [25, 25],
+                iconAnchor: [12.5, 25],
+                popupAnchor: [0, -12.5],
+            }),
+        }).addTo(map);
         let markerPopup=tableStationImformation[i]['name'];
         markerPopup+='<br>nombre de vélos disponible: '+tableStationStatus[i]['num_bikes_available'];
         markerPopup+='<br>nombre de place de parkings libre: '+tableStationStatus[i]['num_docks_available'];
@@ -47,7 +54,12 @@ window.addEventListener('load', async function () {
     fetch(urlConstruction).then((response)=>response.json()).then((data)=>{
         const incidents=data["incidents"];
         incidents.forEach(incident=>{
-            const marker=L.marker(incident['location']['polyline'].split(' ')).addTo(map);
+            const marker=L.marker(incident['location']['polyline'].split(' '),{
+                icon: L.icon({
+                    iconUrl: 'https://openclipart.org/image/800px/284756',
+                    iconSize: [25, 25],
+                }),
+            }).addTo(map);
             let markerPopup="date: "+incident['starttime']+" - "+incident['endtime'];
             markerPopup+="<br>cause: "+incident['type'];
             marker.bindPopup(markerPopup);
