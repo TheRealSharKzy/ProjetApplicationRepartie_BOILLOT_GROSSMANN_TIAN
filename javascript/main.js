@@ -15,9 +15,9 @@ window.addEventListener('load', async function () {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    const urlStationImformation = 'https://transport.data.gouv.fr/gbfs/nancy/station_information.json';
+    const urlStationInformation = 'https://transport.data.gouv.fr/gbfs/nancy/station_information.json';
     const urlStationStatus = 'https://transport.data.gouv.fr/gbfs/nancy/station_status.json';
-    /*fetch(urlStationImformation).then((response) => response.json()).then((data) => {
+    /*fetch(urlStationInformation).then((response) => response.json()).then((data) => {
         const stations = data['data']['stations'];
         stations.forEach(station => {
             const marker = L.marker([station['lat'], station['lon']]).addTo(map);
@@ -30,9 +30,19 @@ window.addEventListener('load', async function () {
         });
     });*/
 
-    const stationImformation = await fetch(urlStationImformation).then(response=>response.json());
-    const stationStatus=await fetch(urlStationStatus).then(response=>response.json());
-    const tableStationImformation=stationImformation['data']['stations'];
+    const stationInformation = await fetch(urlStationInformation).then(response=>{
+        if(response.ok)
+            return response.json();
+        else
+            return Promise.reject(new Error(response.statusText))
+    }).catch(error => console.log('fetch: net error :' + error.message));
+    const stationStatus=await fetch(urlStationStatus).then(response=>{
+        if(response.ok)
+            return response.json();
+        else
+            return Promise.reject(new Error(response.statusText))
+    }).catch(error => console.log('fetch: net error :' + error.message));
+    const tableStationInformation=stationInformation['data']['stations'];
     const tableStationStatus=stationStatus['data']['stations'];
     for (i=0;i<tableStationImformation.length;i++){
         //console.log(tableStationImformation[i]['lon']);
