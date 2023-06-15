@@ -41,7 +41,7 @@ window.addEventListener('load', async function () {
     const tableStationStatus=stationStatus['data']['stations'];
     for (i=0;i<tableStationInformation.length;i++){
         //console.log(tableStationInformation[i]['lon']);
-        const marker=L.marker([tableStationImformation[i]['lat'],tableStationInformation[i]['lon']]).addTo(map);
+        const marker=L.marker([tableStationInformation[i]['lat'],tableStationInformation[i]['lon']]).addTo(map);
         let markerPopup=tableStationInformation[i]['name'];
         markerPopup+='<br>nombre de vélos disponible: '+tableStationStatus[i]['num_bikes_available'];
         markerPopup+='<br>nombre de place de parkings libre: '+tableStationStatus[i]['num_docks_available'];
