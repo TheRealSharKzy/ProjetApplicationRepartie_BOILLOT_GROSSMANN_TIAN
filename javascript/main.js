@@ -44,9 +44,9 @@ window.addEventListener('load', async function () {
     }).catch(error => console.log('fetch: net error :' + error.message));
     const tableStationInformation=stationInformation['data']['stations'];
     const tableStationStatus=stationStatus['data']['stations'];
-    for (i=0;i<tableStationImformation.length;i++){
+    for (i=0;i<tableStationInformation.length;i++){
         //console.log(tableStationImformation[i]['lon']);
-        const marker=L.marker([tableStationImformation[i]['lat'],tableStationImformation[i]['lon']],{
+        const marker=L.marker([tableStationInformation[i]['lat'],tableStationInformation[i]['lon']],{
             icon: L.icon({
                 iconUrl: 'https://www.android-logiciels.fr/wp-content/uploads/2014/07/Paris-Velib-icone-1.png',
                 iconSize: [25, 25],
@@ -54,7 +54,7 @@ window.addEventListener('load', async function () {
                 popupAnchor: [0, -12.5],
             }),
         }).addTo(map);
-        let markerPopup=tableStationImformation[i]['name'];
+        let markerPopup=tableStationInformation[i]['name'];
         markerPopup+='<br>nombre de vélos disponible: '+tableStationStatus[i]['num_bikes_available'];
         markerPopup+='<br>nombre de place de parkings libre: '+tableStationStatus[i]['num_docks_available'];
         marker.bindPopup(markerPopup);
