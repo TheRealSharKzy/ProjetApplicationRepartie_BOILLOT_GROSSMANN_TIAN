@@ -27,7 +27,7 @@ public class BD implements ServiceBD {
         String strJSON = "{ \n\"restaurants\" : [\n";
         while (res.next()){
             //System.out.println("Nom : " +res.getString(2) + " adresse : " + res.getString(3));
-            strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\" \n},\n";
+            strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n },\n";
         }
         strJSON += "]\n}";
 
