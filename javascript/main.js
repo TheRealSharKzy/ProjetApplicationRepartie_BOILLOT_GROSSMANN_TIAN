@@ -17,18 +17,6 @@ window.addEventListener('load', async function () {
 
     const urlStationInformation = 'https://transport.data.gouv.fr/gbfs/nancy/station_information.json';
     const urlStationStatus = 'https://transport.data.gouv.fr/gbfs/nancy/station_status.json';
-    /*fetch(urlStationInformation).then((response) => response.json()).then((data) => {
-        const stations = data['data']['stations'];
-        stations.forEach(station => {
-            const marker = L.marker([station['lat'], station['lon']]).addTo(map);
-            const markerPopup=station['name'];
-            marker.bindPopup(markerPopup);
-            fetch(urlStationStatus).then((response)=>response.json()).then((data)=>{
-               const stations=data['data']['stations'];
-
-            });
-        });
-    });*/
 
     const stationInformation = await fetch(urlStationInformation).then(response=>{
         if(response.ok)
@@ -74,6 +62,11 @@ window.addEventListener('load', async function () {
             markerPopup+="<br>cause: "+incident['type'];
             marker.bindPopup(markerPopup);
         });
+    });
+
+    const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
+    fetch(urlDonneesBloquees).then((response)=>response.json()).then((data)=>{
+        console.log(data);
     });
 
 });
