@@ -34,4 +34,20 @@ public class BD implements ServiceBD {
         return strJSON;
 
     }
+
+    @Override
+    public Boolean reserverTable(int idRestaurant,String nom,String prenom, int nbPersonne, String telephone, String date) throws SQLException, IOException {
+
+        connect();
+
+        PreparedStatement statement = con.prepareStatement("insert into reservation(nom,prenom,nbPersonne,telephone,dateReservation,idRestaurant) values (?,?,?,?,date(?),?)");
+        statement.setString(1,nom);
+        statement.setString(2,prenom);
+        statement.setInt(3,nbPersonne);
+        statement.setString(4,telephone);
+        statement.setString(5,date);
+        statement.setInt(6,idRestaurant);
+        return !statement.execute();
+
+    }
 }
