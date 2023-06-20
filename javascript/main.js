@@ -64,7 +64,7 @@ window.addEventListener('load', async function () {
         });
     });
 
-   /* const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
+   const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
     fetch(urlDonneesBloquees).then((response)=>response.json()).then((data)=>{
         data.forEach(donnee=>{
             const coordinates=donnee['geometry']['coordinates'];
@@ -75,7 +75,7 @@ window.addEventListener('load', async function () {
                 }),
             }).addTo(map);
         });
-    });*/
+    });
 
     const URLrestaurants='http://localhost:8080/restaurants';
     fetch(URLrestaurants).then((response)=>response.json()).then((data)=>{
