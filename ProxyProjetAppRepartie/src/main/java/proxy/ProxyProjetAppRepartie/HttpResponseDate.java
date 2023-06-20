@@ -1,4 +1,4 @@
-package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie;
+package proxy.ProxyProjetAppRepartie;
 
 import java.io.Serializable;
 

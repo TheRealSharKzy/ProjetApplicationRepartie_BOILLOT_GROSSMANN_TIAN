@@ -1,4 +1,4 @@
-package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.restaurants;
+package proxy.ProxyProjetAppRepartie.restaurants;
 
 import java.io.IOException;
 import java.rmi.Remote;

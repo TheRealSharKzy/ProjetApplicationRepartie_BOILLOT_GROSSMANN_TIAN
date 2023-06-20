@@ -74,13 +74,14 @@ window.addEventListener('load', async function () {
                     iconSize: [25, 25],
                 }),
             }).addTo(map);
+            let markerPopup=donnee['fields']['uo_lib_officiel'];
+            marker.bindPopup(markerPopup);
         });
     });
 
     const URLrestaurants='http://localhost:8080/restaurants';
     fetch(URLrestaurants).then((response)=>response.json()).then((data)=>{
         data['restaurants'].forEach(donnee=>{
-            console.log(donnee['latitude']);
             const longitude = donnee['longitude'];
             const latitude = donnee['latitude'];
             const marker=L.marker([latitude,longitude],{

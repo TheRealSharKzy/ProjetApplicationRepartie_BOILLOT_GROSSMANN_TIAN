@@ -1,4 +1,4 @@
-package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie;
+package proxy.ProxyProjetAppRepartie;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

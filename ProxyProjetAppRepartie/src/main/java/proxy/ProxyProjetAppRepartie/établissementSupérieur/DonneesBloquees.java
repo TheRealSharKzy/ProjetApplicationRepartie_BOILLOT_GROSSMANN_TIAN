@@ -1,9 +1,9 @@
-package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.établissementSupérieur;
+package proxy.ProxyProjetAppRepartie.établissementSupérieur;
 
-import ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.HttpResponseDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import proxy.ProxyProjetAppRepartie.HttpResponseDate;
 
 import java.net.URI;
 import java.net.http.HttpClient;
