@@ -37,13 +37,13 @@ public class Proxy {
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/reservation")
-    public void postData(@RequestBody String data) throws RemoteException, NotBoundException, JSONException {
+    public void postData(@RequestBody String data) throws IOException, NotBoundException, JSONException, SQLException {
         String host = "localhost";
         int port = 1099;
         Registry registry = java.rmi.registry.LocateRegistry.getRegistry(host, port);
         ServiceBD bd = (ServiceBD) registry.lookup("BD");
-        JSONArray jsonArray = new JSONArray(data);
-
-        //bd.reserverTable();
+        JSONObject jsonObject = new JSONObject(data);
+        System.out.println(data);
+        bd.reserverTable(jsonObject.getInt("idResto"), jsonObject.getString("nom"), jsonObject.getString("prenom"), jsonObject.getInt("nbPers"), jsonObject.getString("tel"), jsonObject.getString("date") );
     }
 }
