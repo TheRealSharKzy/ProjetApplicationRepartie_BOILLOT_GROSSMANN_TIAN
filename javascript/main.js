@@ -79,6 +79,38 @@ window.addEventListener('load', async function () {
         });
     });
 
+    function getFormInfo() {
+        let nom = document.getElementById('nomRes').value;
+        let prenom = document.getElementById('prenomRes').value;
+        let nbPers = document.getElementById('nbPersRes').value;
+        let date = document.getElementById('dateRes').value;
+        let tel = document.getElementById('telRes').value;
+        let idResto = document.getElementById('idResto').value;
+
+        fetch('http://localhost:8080/reservation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                    nom: nom,
+                    prenom: prenom,
+                    nbPers: nbPers,
+                    date: date,
+                    tel: tel,
+                    idResto: idResto
+                })
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {console.log(data)});
+            } else {
+                console.log('Mauvaise réponse du réseau');
+                Promise.reject(new Error(response.statusText));
+            }
+        })
+
+    }
+
     const URLrestaurants='http://localhost:8080/restaurants';
     fetch(URLrestaurants).then((response)=>response.json()).then((data)=>{
         data['restaurants'].forEach(donnee=>{
@@ -92,7 +124,30 @@ window.addEventListener('load', async function () {
                     popupAnchor: [0, -12.5],
                 }),
             }).addTo(map);
+            let markerPopup=`${donnee["nom"]}`;
+            markerPopup+="<br>"+donnee['adresse'];
+            marker.bindPopup(markerPopup);
+            marker.on('click',function (e) {
+                let nomResto = document.getElementById('NomResto');
+                nomResto.innerHTML=`<h2>${donnee['nom']}<h2>`;
+
+
+                let reservation = document.getElementById('reservation');
+                reservation.innerHTML= "<input type=\"text\" placeholder=\"nom\" id='nomRes'>\n" +
+                    "    <input type=\"text\" placeholder=\"prenom\" id='prenomRes'>\n" +
+                    "    <input type=\"number\" placeholder=\"Nombre de personnes\" id='nbPersRes'>\n" +
+                    "    <input type=\"date\" placeholder=\"Date de la réservation\" id='dateRes'>\n" +
+                    "    <input type=\"tel\" placeholder=\"Téléphone\" id='telRes'>" +
+                        `    <input type='hidden' value='${donnee['id']}' id='idResto'>` +
+                    "    <button id=\"reserver\" type='button'>Réserver</button>";
+
+                let reserver = document.getElementById('reserver');
+                reserver.addEventListener('click',getFormInfo);
+
+            });
         });
     });
+
+
 
 });
