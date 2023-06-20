@@ -1,11 +1,9 @@
-package src;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.restaurants;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.sql.Date;
 import java.sql.SQLException;
 
 public class Client {

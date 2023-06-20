@@ -1,9 +1,7 @@
-package src;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.restaurants;
 
 import java.io.IOException;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.sql.Date;
 import java.sql.SQLException;
 
 public interface ServiceBD extends Remote {

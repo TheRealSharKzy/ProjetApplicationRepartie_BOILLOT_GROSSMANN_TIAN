@@ -1,14 +1,10 @@
-package proxy.ProxyProjetAppRepartie;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.établissementSupérieur;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.établissementSupérieur.DonneesBloquees;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.RemoteServer;
 import java.rmi.server.UnicastRemoteObject;
 
 class MainServeur{

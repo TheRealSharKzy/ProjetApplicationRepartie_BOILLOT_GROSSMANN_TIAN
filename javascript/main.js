@@ -64,7 +64,7 @@ window.addEventListener('load', async function () {
         });
     });
 
-    const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
+   /* const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
     fetch(urlDonneesBloquees).then((response)=>response.json()).then((data)=>{
         data.forEach(donnee=>{
             const coordinates=donnee['geometry']['coordinates'];
@@ -72,6 +72,23 @@ window.addEventListener('load', async function () {
                 icon: L.icon({
                     iconUrl: 'https://cdn-icons-png.flaticon.com/512/2883/2883921.png',
                     iconSize: [25, 25],
+                }),
+            }).addTo(map);
+        });
+    });*/
+
+    const URLrestaurants='http://localhost:8080/restaurants';
+    fetch(URLrestaurants).then((response)=>response.json()).then((data)=>{
+        data['restaurants'].forEach(donnee=>{
+            console.log(donnee['latitude']);
+            const longitude = donnee['longitude'];
+            const latitude = donnee['latitude'];
+            const marker=L.marker([latitude,longitude],{
+                icon: L.icon({
+                    iconUrl: 'https://cdn.icon-icons.com/icons2/2419/PNG/512/restaurant_location_icon_146860.png',
+                    iconSize: [25, 25],
+                    iconAnchor: [12.5, 25],
+                    popupAnchor: [0, -12.5],
                 }),
             }).addTo(map);
         });

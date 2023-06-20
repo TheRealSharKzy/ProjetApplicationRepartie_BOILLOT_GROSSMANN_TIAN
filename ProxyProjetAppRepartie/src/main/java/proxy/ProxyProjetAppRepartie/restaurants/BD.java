@@ -1,6 +1,9 @@
-package src;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.restaurants;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 public class BD implements ServiceBD {
@@ -27,9 +30,10 @@ public class BD implements ServiceBD {
         ResultSet res = statement.executeQuery("select * from restaurants");
 
         String strJSON = "{ \n\"restaurants\" : [\n";
+        res.next();
+        strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n }\n";
         while (res.next()){
-            //System.out.println("Nom : " +res.getString(2) + " adresse : " + res.getString(3));
-            strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n },\n";
+            strJSON += ",{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n }\n";
         }
         strJSON += "]\n}";
 

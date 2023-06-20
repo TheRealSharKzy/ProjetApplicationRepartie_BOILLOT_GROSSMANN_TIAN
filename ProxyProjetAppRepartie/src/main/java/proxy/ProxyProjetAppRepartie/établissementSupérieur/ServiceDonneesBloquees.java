@@ -1,4 +1,4 @@
-package proxy.ProxyProjetAppRepartie;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie.établissementSupérieur;
 
 import java.net.http.HttpResponse;
 import java.rmi.Remote;

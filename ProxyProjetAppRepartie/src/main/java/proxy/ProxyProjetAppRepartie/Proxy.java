@@ -1,4 +1,4 @@
-package proxy.ProxyProjetAppRepartie;
+package ProxyProjetAppRepartie.src.main.java.proxy.ProxyProjetAppRepartie;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
