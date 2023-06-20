@@ -66,7 +66,15 @@ window.addEventListener('load', async function () {
 
     const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
     fetch(urlDonneesBloquees).then((response)=>response.json()).then((data)=>{
-        console.log(data);
+        data.forEach(donnee=>{
+            const coordinates=donnee['geometry']['coordinates'];
+            const marker=L.marker([coordinates[1],coordinates[0]],{
+                icon: L.icon({
+                    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2883/2883921.png',
+                    iconSize: [25, 25],
+                }),
+            }).addTo(map);
+        });
     });
 
 });
