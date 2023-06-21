@@ -31,9 +31,9 @@ public class BD implements ServiceBD {
 
         String strJSON = "{ \n\"restaurants\" : [\n";
         res.next();
-        strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n }\n";
+        strJSON += "{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) +", \n \"id\" : "+res.getInt(1)+ "\n }\n";
         while (res.next()){
-            strJSON += ",{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) + "\n }\n";
+            strJSON += ",{\n \"nom\" : \"" + res.getString(2) + "\", \n \"adresse\" : \"" + res.getString(3) + "\", \n \"longitude\" : " + res.getString(4) + ", \n \"latitude\" : " + res.getString(5) +", \n \"id\" : "+res.getInt(1)+ "\n }\n";
         }
         strJSON += "]\n}";
 

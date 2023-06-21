@@ -101,12 +101,7 @@ window.addEventListener('load', async function () {
                     idResto: idResto
                 })
         }).then((response) => {
-            if (response.ok) {
-                response.json().then((data) => {console.log(data)});
-            } else {
-                console.log('Mauvaise réponse du réseau');
-                Promise.reject(new Error(response.statusText));
-            }
+            console.log(response);
         })
 
     }
@@ -131,7 +126,6 @@ window.addEventListener('load', async function () {
                 let nomResto = document.getElementById('NomResto');
                 nomResto.innerHTML=`<h2>${donnee['nom']}<h2>`;
 
-
                 let reservation = document.getElementById('reservation');
                 reservation.innerHTML= "<input type=\"text\" placeholder=\"nom\" id='nomRes'>\n" +
                     "    <input type=\"text\" placeholder=\"prenom\" id='prenomRes'>\n" +
@@ -139,7 +133,7 @@ window.addEventListener('load', async function () {
                     "    <input type=\"date\" placeholder=\"Date de la réservation\" id='dateRes'>\n" +
                     "    <input type=\"tel\" placeholder=\"Téléphone\" id='telRes'>" +
                         `    <input type='hidden' value='${donnee['id']}' id='idResto'>` +
-                    "    <button id=\"reserver\" type='button'>Réserver</button>";
+                    "    <button id=\"reserver\">Réserver</button>";
 
                 let reserver = document.getElementById('reserver');
                 reserver.addEventListener('click',getFormInfo);

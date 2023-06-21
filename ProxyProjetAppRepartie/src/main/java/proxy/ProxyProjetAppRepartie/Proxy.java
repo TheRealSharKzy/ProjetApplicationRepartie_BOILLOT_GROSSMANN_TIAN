@@ -2,6 +2,7 @@ package proxy.ProxyProjetAppRepartie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import proxy.ProxyProjetAppRepartie.restaurants.ServiceBD;
 import proxy.ProxyProjetAppRepartie.établissementSupérieur.ServiceDonneesBloquees;
@@ -43,7 +44,7 @@ public class Proxy {
         Registry registry = java.rmi.registry.LocateRegistry.getRegistry(host, port);
         ServiceBD bd = (ServiceBD) registry.lookup("BD");
         JSONObject jsonObject = new JSONObject(data);
-        System.out.println(data);
+        System.out.println("Add reservation: "+data);
         bd.reserverTable(jsonObject.getInt("idResto"), jsonObject.getString("nom"), jsonObject.getString("prenom"), jsonObject.getInt("nbPers"), jsonObject.getString("tel"), jsonObject.getString("date") );
     }
 }
