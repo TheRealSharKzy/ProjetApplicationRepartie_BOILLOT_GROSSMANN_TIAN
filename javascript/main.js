@@ -1,4 +1,6 @@
 window.addEventListener('load', async function () {
+	
+    const ip = '127.0.0.1';
 
     // Créer une instance de carte
     var map = L.map('map');
@@ -64,7 +66,7 @@ window.addEventListener('load', async function () {
         });
     });
 
-   const urlDonneesBloquees='http://localhost:8080/donneesBloquees';
+   const urlDonneesBloquees=`http://${ip}:8080/donneesBloquees`;
     fetch(urlDonneesBloquees).then((response)=>response.json()).then((data)=>{
         data.forEach(donnee=>{
             const coordinates=donnee['geometry']['coordinates'];
@@ -87,7 +89,7 @@ window.addEventListener('load', async function () {
         let tel = document.getElementById('telRes').value;
         let idResto = document.getElementById('idResto').value;
 
-        fetch('http://localhost:8080/reservation', {
+        fetch(`http://${ip}:8080/reservation`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,7 +108,7 @@ window.addEventListener('load', async function () {
 
     }
 
-    const URLrestaurants='http://localhost:8080/restaurants';
+    const URLrestaurants=`http://${ip}:8080/restaurants`;
     fetch(URLrestaurants).then((response)=>response.json()).then((data)=>{
         data['restaurants'].forEach(donnee=>{
             const longitude = donnee['longitude'];
