@@ -15,12 +15,16 @@ import java.sql.SQLException;
 
 @RestController
 public class Proxy {
+
+    Registry registry;
+
+    public Proxy() throws RemoteException {
+        registry = java.rmi.registry.LocateRegistry.getRegistry("localhost", 1099);
+    }
+
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/donneesBloquees")
     public String donneesBloquees() throws Exception {
-        String host = "localhost";
-        int port = 1098;
-        Registry registry = java.rmi.registry.LocateRegistry.getRegistry(host, port);
         ServiceDonneesBloquees donneesBloquees = (ServiceDonneesBloquees) registry.lookup("donnéesBloquées");
         HttpResponseDate response = donneesBloquees.fetch();
         return response.getBody();
@@ -29,9 +33,6 @@ public class Proxy {
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/restaurants")
     public String restaurants() throws IOException, NotBoundException, SQLException {
-        String host = "localhost";
-        int port = 1099;
-        Registry registry = java.rmi.registry.LocateRegistry.getRegistry(host, port);
         ServiceBD bd = (ServiceBD) registry.lookup("BD");
         return bd.getRestaurants();
     }
@@ -39,9 +40,6 @@ public class Proxy {
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/reservation")
     public void postData(@RequestBody String data) throws IOException, NotBoundException, JSONException, SQLException {
-        String host = "localhost";
-        int port = 1099;
-        Registry registry = java.rmi.registry.LocateRegistry.getRegistry(host, port);
         ServiceBD bd = (ServiceBD) registry.lookup("BD");
         JSONObject jsonObject = new JSONObject(data);
         System.out.println("Add reservation: "+data);
